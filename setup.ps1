@@ -97,7 +97,7 @@ Start-Sleep -Seconds 1
 # PowerShellを再起動
 # ------------------------------------------------------------------------------
 
-Write-Host "Chocolateyを使用してソフトウェアをインストールするため、PowerShellを再起動します。"
+Write-Host "Chocolateyを使用してパッケージをインストールするため、PowerShellを再起動します。"
 Start-Sleep -Seconds 1
 
 # 現在実行している.ps1ファイルのディレクトリを取得する

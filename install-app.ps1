@@ -43,11 +43,11 @@ if (-not (Test-Chocolatey)) {
 Write-Host "Chocolateyはインストールされています。セットアップを続行します。" -ForegroundColor Green
 Start-Sleep -Seconds 1
 
-Write-Host "Chocolateyを使用してソフトウェアをインストールします。"
+Write-Host "Chocolateyを使用してパッケージをインストールします。"
 Start-Sleep -Seconds 1
 
-# インストールするソフトウェアのリスト
-$softwareList = @(
+# インストールするパッケージのリスト
+$packageList = @(
     "git.install",
     "pwsh",
     "powertoys",
@@ -61,17 +61,17 @@ $softwareList = @(
     "steam"
 )
 
-# インストールに失敗したソフトウェアを保持する配列
+# インストールに失敗したパッケージを保持する配列
 $failedInstalls = @()
 
-Write-Host "インストールするソフトウェアリスト:" 
-$softwareList | ForEach-Object { Write-Host $_ }
+Write-Host "インストールするパッケージリスト:" 
+$packageList | ForEach-Object { Write-Host $_ }
 Start-Sleep -Seconds 1
 
 Write-Host "インストールを開始します。"
 Start-Sleep -Seconds 1
 
-foreach ($software in $softwareList) {
+foreach ($software in $packageList) {
     Write-Host "$software をインストールします..."
     choco install $software -y
     if ($LASTEXITCODE -ne 0) {
@@ -86,12 +86,12 @@ foreach ($software in $softwareList) {
 
 Start-Sleep -Seconds 1
 
-# 失敗したソフトウェアを出力
+# 失敗したパッケージを出力
 if ($failedInstalls.Count -gt 0) {
-    Write-Host "これらのソフトウェアのインストールに失敗しました:" -ForegroundColor Red
+    Write-Host "これらのパッケージのインストールに失敗しました:" -ForegroundColor Red
     $failedInstalls | ForEach-Object { Write-Host $_ }
 } else {
-    Write-Host "すべてのソフトウェアを正常にインストールしました。" -ForegroundColor Green
+    Write-Host "すべてのパッケージを正常にインストールしました。" -ForegroundColor Green
 }
 
 pause
