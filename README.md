@@ -9,13 +9,12 @@
  - CubeICE 
  - Bitwarden
 
-## 説明
-### setup.ps1
+## setup.ps1
 流れ
 1. Windowsを使いやすくするためのレジストリ編集
 1. ipv4パブリックDNSをGoogleのものに設定
 1. Chocolateyのインストール
-1. ChocolateyでソフトウェアをインストールするためにPowerShellを再起動し、`install-app.ps1`を実行する
+1. ChocolateyでパッケージをインストールするためにPowerShellを再起動し、`install-app.ps1`を実行する
 #### レジストリ編集部分
 - エクスプローラで拡張子を表示
 - エクスプローラで隠しファイルを表示
@@ -23,3 +22,7 @@
 - Windows をダークモードに設定
 - クリップボード履歴の有効化
 - マウス プロパティの「ポインターの精度を高める」を無効化
+
+## install-app.ps1
+Chocolateyでパッケージをインストールする。
+`$softwareList`でインストールするパッケージを設定している
