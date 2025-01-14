@@ -1,30 +1,17 @@
-name: PowerShellTest
-
+name: Test PowerShell
 on: push
 
 jobs:
-  first_job:
-    runs-on: windows-2019
+  pester-test:
+    name: Pester test
+    runs-on: windows-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Display hello world pwsh
-        run: |
-          write-host "hello world pwsh"
-          $PSVersionTable
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Perform a Pester test from the command-line
         shell: pwsh
-
-      - name: Display hello world powershell
-        run: |
-          write-host "hello world pwsh"
-          $PSVersionTable
-        shell: powershell
-
-      - name: run ps1File cmd
-        run: powershell -NoProfile -ExecutionPolicy Unrestricted ./setup.ps1
-        shell: cmd
-
-      - name: run ps1File pwsh
-        run: powershell -NoProfile -ExecutionPolicy Unrestricted ./setup.ps1
+        run: Test-Path resultsfile.log | Should -Be $true
+      - name: Perform a Pester test from the setup.ps1 file
         shell: pwsh
+        run: |
+          Invoke-Pester Unit.setup.ps1 -Passthru
