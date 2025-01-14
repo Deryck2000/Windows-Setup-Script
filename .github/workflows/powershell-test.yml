@@ -1,25 +1,30 @@
-name: PowerShell Script Test
+name: PowerShellTest
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+on: push
 
 jobs:
-  build:
-    runs-on: windows-latest
-
+  first_job:
+    runs-on: windows-2019
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: Setup PowerShell
-      uses: actions/setup-powershell@v1
+      - name: Display hello world pwsh
+        run: |
+          write-host "hello world pwsh"
+          $PSVersionTable
+        shell: pwsh
 
-    - name: Run PowerShell script
-      run: |
-        /setup.ps1
-      shell: pwsh
+      - name: Display hello world powershell
+        run: |
+          write-host "hello world pwsh"
+          $PSVersionTable
+        shell: powershell
+
+      - name: run ps1File cmd
+        run: powershell -NoProfile -ExecutionPolicy Unrestricted ./setup.ps1
+        shell: cmd
+
+      - name: run ps1File pwsh
+        run: powershell -NoProfile -ExecutionPolicy Unrestricted ./setup.ps1
+        shell: pwsh
