@@ -7,4 +7,6 @@
 
 2.	setup.ps1を実行
 
-3. 	CubeICE インストール
+3. 	自力でインストールする：
+ - CubeICE 
+ - Bitwarden
