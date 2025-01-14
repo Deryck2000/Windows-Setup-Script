@@ -46,20 +46,8 @@ Start-Sleep -Seconds 1
 Write-Host "Chocolateyを使用してパッケージをインストールします。"
 Start-Sleep -Seconds 1
 
-# インストールするパッケージのリスト
-$packageList = @(
-    "git.install",
-    "pwsh",
-    "powertoys",
-    "tabby",
-    "path-copy-copy",
-    "flow-launcher",
-    "sublimetext4",
-    "eartrumpet",
-    "opera-gx",
-    "discord.install",
-    "steam"
-)
+# インストールするパッケージのリストをファイルから読み込み
+$packageList = Get-Content -Path "./packages.txt"
 
 # インストールに失敗したパッケージを保持する配列
 $failedInstalls = @()

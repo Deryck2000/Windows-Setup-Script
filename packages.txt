@@ -1,0 +1,11 @@
+git.install
+pwsh
+powertoys
+tabby
+path-copy-copy
+flow-launcher
+sublimetext4
+eartrumpet
+opera-gx
+discord.install
+steam

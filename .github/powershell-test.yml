@@ -1,0 +1,25 @@
+name: PowerShell Script Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup PowerShell
+      uses: actions/setup-powershell@v1
+
+    - name: Run PowerShell script
+      run: |
+        .\setup.ps1
+      shell: pwsh
