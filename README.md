@@ -3,10 +3,7 @@
 自分用にwindowsをセットアップするPowershellスクリプト、使用は自己責任！！おれ用！！！
 
 ## 使い方
-1. 	`Start.bat`をダブルクリックで起動
-1. 	自力でインストールする：
- - CubeICE 
- - Bitwarden
+`Start.bat`をダブルクリックで起動
 
 ## カスタム
 - `sources\packages.txt`を編集することでインストールするパッケージを変更できる
