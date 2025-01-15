@@ -4,12 +4,15 @@
 
 ## 使い方
 1. 	`Start.bat`をダブルクリックで起動
-3. 	自力でインストールする：
+1. 	自力でインストールする：
  - CubeICE 
  - Bitwarden
 
-## setup.ps1
-流れ
+## カスタム
+- `sources\packages.txt`を編集することでインストールするパッケージを変更できる
+
+## なにしてんの
+### setup.ps1
 1. Windowsを使いやすくするためのレジストリ編集
 1. ipv4パブリックDNSをGoogleのものに設定
 1. Chocolateyのインストール
