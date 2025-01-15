@@ -3,6 +3,7 @@ GitHub.GitHubDesktop
 OpenJS.NodeJS
 Microsoft.PowerShell
 Microsoft.PowerToys
+DevToys-app.DevToys
 Eugeny.Tabby
 CLechasseur.PathCopyCopy
 SublimeHQ.SublimeText.4
