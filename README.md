@@ -25,4 +25,4 @@
 
 ## install-app.ps1
 Chocolateyでパッケージをインストールする。
-`$packageList`でインストールするパッケージを設定している
+`$packages.txt`でインストールするパッケージを設定している
