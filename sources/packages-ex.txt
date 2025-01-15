@@ -1,0 +1,6 @@
+Discord.Discord
+Valve.Steam
+Flow-Launcher.Flow-Launcher
+PrismLauncher.PrismLauncher
+Bitwarden.Bitwarden
+RustemMussabekov.Raindrop
