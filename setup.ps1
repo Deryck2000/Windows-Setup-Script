@@ -93,29 +93,62 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocola
 Write-Host "Chocolateyをインストールしました。"
 Start-Sleep -Seconds 1
 
-# ------------------------------------------------------------------------------
-# PowerShellを再起動
-# ------------------------------------------------------------------------------
+$env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 
-Write-Host "Chocolateyを使用してパッケージをインストールするため、PowerShellを再起動します。"
-Start-Sleep -Seconds 1
+Write-Host "Chocolateyがインストールされているかチェックします..."
 
-# 現在実行している.ps1ファイルのディレクトリを取得する
-$currentScriptDirectory = Split-Path -Parent $MyInvocation.MyCommand.Path
+# Chocolatey がインストールされているかをチェックする
+function Test-Chocolatey {
+    $chocoPath = (Get-Command choco -ErrorAction SilentlyContinue).Path
+    return -not [string]::IsNullOrEmpty($chocoPath)
+}
 
-# 実行したい別のスクリプトのパスを設定する
-$otherScriptPath = Join-Path -Path $currentScriptDirectory -ChildPath "install-app.ps1"
-
-# Windows Terminalで新しいタブを開いてスクリプトを再実行する関数
-function Restart-PowerShell {
-
-    # Windows Terminalを開き、新しいタブで別のスクリプトを実行
-    Start-Process -FilePath "wt.exe" -ArgumentList "powershell.exe -NoExit -File `"$otherScriptPath`"" -Verb RunAs
-    
-    # 現在のスクリプトを終了
+if (-not (Test-Chocolatey)) {
+    Write-Host "Chocolateyがインストールされていません。セットアップを終了します。" -ForegroundColor Red
+    pause
     exit
 }
 
-# PowerShellを再起動
-Restart-PowerShell
+Write-Host "Chocolateyはインストールされています。セットアップを続行します。" -ForegroundColor Green
+Start-Sleep -Seconds 1
 
+Write-Host "Chocolateyを使用してパッケージをインストールします。"
+Start-Sleep -Seconds 1
+
+# インストールするパッケージのリストをファイルから読み込み
+$packageList = Get-Content -Path "./packages.txt"
+
+# インストールに失敗したパッケージを保持する配列
+$failedInstalls = @()
+
+Write-Host "インストールするパッケージリスト:" 
+$packageList | ForEach-Object { Write-Host $_ }
+Start-Sleep -Seconds 1
+
+Write-Host "インストールを開始します。"
+Start-Sleep -Seconds 1
+
+foreach ($software in $packageList) {
+    Write-Host "$software をインストールします..."
+    choco install $software -y
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "$software のインストールに失敗しました。" -ForegroundColor Red
+        $failedInstalls += $software
+        Start-Sleep -Seconds 1
+    } else {
+        Write-Host "$software を正常にインストールしました。" -ForegroundColor Green
+        Start-Sleep -Seconds 1
+    }
+}
+
+Start-Sleep -Seconds 1
+
+# 失敗したパッケージを出力
+if ($failedInstalls.Count -gt 0) {
+    Write-Host "これらのパッケージのインストールに失敗しました:" -ForegroundColor Red
+    $failedInstalls | ForEach-Object { Write-Host $_ }
+} else {
+    Write-Host "すべてのパッケージを正常にインストールしました。" -ForegroundColor Green
+}
+
+pause
