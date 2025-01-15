@@ -115,8 +115,11 @@ Start-Sleep -Seconds 1
 Write-Host "Chocolateyを使用してパッケージをインストールします。"
 Start-Sleep -Seconds 1
 
+# 実行したい別のスクリプトのパスを設定する
+$packageTxt = Join-Path -Path $PSScriptRoot -ChildPath "packages.txt"
+
 # インストールするパッケージのリストをファイルから読み込み
-$packageList = Get-Content -Path "./packages.txt"
+$packageList = Get-Content -Path $packageTxt
 
 # インストールに失敗したパッケージを保持する配列
 $failedInstalls = @()
