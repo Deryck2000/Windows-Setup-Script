@@ -5,7 +5,7 @@ Write-Host " | | \||  \  |  \/| \  / |  /  |   /  /   /| / \|| / \|| / \| " -For
 Write-Host " | |_/||  /_ |    / / /  |  \_ |   \ /   /_| \_/|| \_/|| \_/| " -ForegroundColor Green
 Write-Host " \____/\____\\_/\_\/_/   \____/\_|\_\\____/\____/\____/\____/ " -ForegroundColor Green
 Write-Host "デデオチャンのPCセットアップにようこそ！"
-Write-Host "Version 1.0"
+Write-Host "Version 2.0"
 Start-Sleep -Seconds 1
 Write-Host "管理者権限で実行されているかチェックします..."
 
